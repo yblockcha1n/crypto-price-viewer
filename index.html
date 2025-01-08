@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tsnode/vite テスト</title>
+    <style>
+      /* ベーススタイル - アプリケーション全体の基本設定 */
+      body {
+        margin: 0;
+        font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* レイアウトコンテナ */
+      .app {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* ヘッダースタイル */
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 20px 0;
+        border-bottom: 1px solid #e1e4e8;
+      }
+
+      header h1 {
+        margin: 0;
+        color: #2c3e50;
+        font-size: 2.2em;
+        font-weight: 600;
+      }
+
+      /* メインコンテンツエリア */
+      main {
+        padding: 20px;
+      }
+
+      /* 取引所グリッドレイアウト */
+      .exchanges-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+      }
+
+      /* 取引所カードスタイル */
+      .exchange-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .exchange-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .exchange-card h3 {
+        margin: 0 0 20px 0;
+        color: #1a237e;
+        font-size: 1.5em;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e3f2fd;
+      }
+
+      /* 通貨ペア　グリッドレイアウト */
+      .pairs-grid {
+        display: grid;
+        gap: 15px;
+      }
+
+      /* 個別の通貨ペア情報カード */
+      .pair-info {
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #2196f3;
+        transition: background-color 0.2s ease;
+      }
+
+      .pair-info:hover {
+        background: #e3f2fd;
+      }
+
+      .pair-info h4 {
+        margin: 0 0 10px 0;
+        color: #1565c0;
+        font-size: 1.1em;
+      }
+
+      /* 価格表示 */
+      .price {
+        font-size: 1.4em;
+        font-weight: 600;
+        color: #2196f3;
+        margin: 8px 0;
+      }
+
+      /* タイムスタンプ表示 */
+      .timestamp {
+        color: #666;
+        font-size: 0.85em;
+        margin: 5px 0 0 0;
+      }
+
+      /* ローディング表示 */
+      .loading {
+        text-align: center;
+        padding: 40px;
+        font-size: 1.2em;
+        color: #666;
+      }
+
+      /* エラー表示 */
+      .error {
+        color: #f44336;
+        text-align: center;
+        padding: 20px;
+        background: #ffebee;
+        border-radius: 8px;
+        margin: 20px 0;
+        border: 1px solid #ffcdd2;
+      }
+
+      /* レスポンシブデザイン調整 */
+      @media (max-width: 768px) {
+        .app {
+          padding: 10px;
+        }
+
+        header {
+          margin-bottom: 20px;
+        }
+
+        header h1 {
+          font-size: 1.8em;
+        }
+
+        .exchange-card {
+          padding: 15px;
+        }
+
+        .price {
+          font-size: 1.2em;
+        }
+
+        .exchanges-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+      }
+
+      /* アニメーション */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .price-display {
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      /* 価格の変動表示 */
+      .price-up {
+        color: #4caf50;
+        transition: color 0.3s ease;
+      }
+
+      .price-down {
+        color: #f44336;
+        transition: color 0.3s ease;
+      }
+
+      /* ツールチップスタイル */
+      .tooltip {
+        position: relative;
+        display: inline-block;
+      }
+
+      .tooltip:hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 5px 10px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        border-radius: 4px;
+        font-size: 0.85em;
+        white-space: nowrap;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
